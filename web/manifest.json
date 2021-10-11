@@ -1,6 +1,6 @@
 {
-    "name": "clean_architeture_flutter",
-    "short_name": "clean_architeture_flutter",
+    "name": "mydeardiary",
+    "short_name": "mydeardiary",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

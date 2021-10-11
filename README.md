@@ -1,4 +1,4 @@
-# clean_architeture_flutter
+# mydeardiary
 
 A new Flutter project.
 

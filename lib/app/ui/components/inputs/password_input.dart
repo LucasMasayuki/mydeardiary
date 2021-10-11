@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:clean_architeture_flutter/app/ui/helpers/i18n/resources.dart';
-import 'package:clean_architeture_flutter/app/ui/helpers/ui_error.dart';
+import 'package:mydeardiary/app/ui/helpers/i18n/resources.dart';
+import 'package:mydeardiary/app/ui/helpers/ui_error.dart';
 
 class PasswordInput extends StatelessWidget {
   final Stream<UIError?> passwordErrorStream;

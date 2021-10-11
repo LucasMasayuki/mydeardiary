@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import 'package:clean_architeture_flutter/app/domain/usecases/load_current_user.dart';
-import 'package:clean_architeture_flutter/app/presentation/mixins/navigation_manager.dart';
-import 'package:clean_architeture_flutter/app/ui/pages/splash/splash_presenter.dart';
+import 'package:mydeardiary/app/domain/usecases/load_current_user.dart';
+import 'package:mydeardiary/app/presentation/mixins/navigation_manager.dart';
+import 'package:mydeardiary/app/ui/pages/splash/splash_presenter.dart';
 
 class GetxSplashPresenter extends GetxController
     with NavigationManager
@@ -11,13 +11,13 @@ class GetxSplashPresenter extends GetxController
 
   GetxSplashPresenter({required this.loadCurrentUser});
 
-  Future<void> checkAccount({int durationInSeconds = 2}) async {
+  Future<void> checkAccount({int durationInSeconds = 10}) async {
     await Future.delayed(Duration(seconds: durationInSeconds));
     try {
       final user = await loadCurrentUser.load();
-      navigateTo = user.token == null ? '/login' : '/home';
+      navigateTo = user.token == null ? '/home' : '/home';
     } catch (error) {
-      navigateTo = '/login';
+      navigateTo = '/home';
     }
   }
 }

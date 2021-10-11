@@ -1,4 +1,4 @@
-name: clean_architeture_flutter
+name: mydeardiary
 description: A new Flutter project.
 publish_to: 'none'
 version: 1.0.0+1
@@ -18,6 +18,7 @@ dependencies:
   injector: 2.0.0
   intl: 0.17.0
   get: 4.3.8
+  shimmer: ^2.0.0
   shared_preferences: 2.0.8
   cupertino_icons: 1.0.3
 
@@ -30,3 +31,23 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+  - family: Festive
+    fonts:
+      - asset: assets/fonts/Festive-Regular.ttf
+  - family: AreYouSerious
+    fonts:
+      - asset: assets/fonts/AreYouSerious-Regular.ttf
+  - family: Birthstone
+    fonts:
+      - asset: assets/fonts/Birthstone-Regular.ttf
+  - family: Ephesis
+    fonts:
+      - asset: assets/fonts/Ephesis-Regular.ttf
+  - family: IndieFlower
+    fonts:
+      - asset: assets/fonts/IndieFlower-Regular.ttf

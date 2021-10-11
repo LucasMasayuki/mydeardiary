@@ -1,4 +1,4 @@
-import 'package:clean_architeture_flutter/app/presentation/protocols/validation.dart';
+import 'package:mydeardiary/app/presentation/protocols/validation.dart';
 
 abstract class FieldValidation {
   String get field;

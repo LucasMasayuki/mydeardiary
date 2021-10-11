@@ -1,10 +1,10 @@
-import 'package:clean_architeture_flutter/app/data/api/graphql.dart';
-import 'package:clean_architeture_flutter/app/data/api/http_error.dart';
-import 'package:clean_architeture_flutter/app/data/models/remote_user_model.dart';
-import 'package:clean_architeture_flutter/app/domain/entities/user_entity.dart';
-import 'package:clean_architeture_flutter/app/domain/helpers/domain_errors.dart';
-import 'package:clean_architeture_flutter/app/domain/usecases/add_user.dart';
-import 'package:clean_architeture_flutter/app/main/graphql/auth.dart';
+import 'package:mydeardiary/app/data/api/graphql.dart';
+import 'package:mydeardiary/app/data/api/http_error.dart';
+import 'package:mydeardiary/app/data/models/remote_user_model.dart';
+import 'package:mydeardiary/app/domain/entities/user_entity.dart';
+import 'package:mydeardiary/app/domain/helpers/domain_errors.dart';
+import 'package:mydeardiary/app/domain/usecases/add_user.dart';
+import 'package:mydeardiary/app/main/graphql/auth.dart';
 
 class RemoteAddUser implements AddUser {
   final GraphQl graphQlClient;
