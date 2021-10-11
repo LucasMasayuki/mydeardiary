@@ -16,7 +16,7 @@ class MyDearDiaryApp extends StatelessWidget {
     );
 
     return GetMaterialApp(
-      title: 'Clean architeture flutter',
+      title: 'My dear diary',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
       navigatorObservers: [routeObserver],
