@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class DiaryEntity extends Equatable {
-  final String? humor;
-  final String? title;
-  final String text;
-  final DateTime date;
-  final DateTime? created;
-  final DateTime? modified;
+  String? humor;
+  late String? title;
+  late String text;
+  late DateTime date;
+  DateTime? created;
+  DateTime? modified;
 
   List get props => [text];
 
@@ -18,4 +18,16 @@ class DiaryEntity extends Equatable {
     this.modified,
     this.humor,
   });
+
+  Map<String, dynamic> toJson() => {
+        'text': this.text,
+        'title': this.title,
+        'date': this.date.toString(),
+      };
+
+  DiaryEntity.fromJson(Map<String, dynamic> json) {
+    this.text = json['text'];
+    this.title = json['title'];
+    this.date = DateTime.parse(json['date']);
+  }
 }

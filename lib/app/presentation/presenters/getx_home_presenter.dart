@@ -5,14 +5,13 @@ import 'package:mydeardiary/app/ui/pages/home/home_presenter.dart';
 import 'package:get/get.dart';
 
 import 'package:mydeardiary/app/domain/helpers/domain_errors.dart';
-import 'package:mydeardiary/app/presentation/mixins/form_manager.dart';
 import 'package:mydeardiary/app/presentation/mixins/loading_manager.dart';
 import 'package:mydeardiary/app/presentation/mixins/navigation_manager.dart';
 import 'package:mydeardiary/app/presentation/mixins/ui_error_manager.dart';
 import 'package:mydeardiary/app/ui/helpers/ui_error.dart';
 
 class GetxHomePresenter extends GetxController
-    with LoadingManager, NavigationManager, FormManager, UIErrorManager
+    with LoadingManager, NavigationManager, UIErrorManager
     implements HomePresenter {
   final GetDiaries getDiariesUseCase;
   final LoadCurrentUser loadCurrentUserCase;
@@ -29,7 +28,6 @@ class GetxHomePresenter extends GetxController
   });
 
   Future<void> getDiaries() async {
-    print('passa');
     try {
       final user = await loadCurrentUserCase.load();
       mainError = UIError.nothing;
@@ -47,5 +45,9 @@ class GetxHomePresenter extends GetxController
           break;
       }
     }
+  }
+
+  void addDiary() {
+    navigateTo = '/add-diary';
   }
 }

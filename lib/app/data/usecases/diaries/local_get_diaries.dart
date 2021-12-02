@@ -14,16 +14,19 @@ class LocalGetDiaries implements GetDiaries {
 
   Future<List<DiaryEntity>> getDiaries(GetDiariesParams params) async {
     try {
-      // final diaries = await fetchSharedPreferences.fetch('diaries');
-      // return json.decode(diaries!);
-      return [
-        new DiaryEntity(
-          text: 'text',
-          title: 'title',
-          date: DateTime.now(),
-          humor: 'ac_unit',
-        )
-      ];
+      final diaries = await fetchSharedPreferences.fetch('diaries');
+      if (diaries == null) {
+        return [];
+      }
+
+      final diariesRaw = json.decode(diaries) as List<dynamic>;
+
+      print(
+          diariesRaw.map((element) => DiaryEntity.fromJson(element)).toList());
+
+      return diariesRaw
+          .map((element) => DiaryEntity.fromJson(element))
+          .toList();
     } catch (error) {
       print(error);
       throw DomainError.unexpected;

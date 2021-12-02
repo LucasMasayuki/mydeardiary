@@ -21,6 +21,10 @@ dependencies:
   shimmer: ^2.0.0
   shared_preferences: 2.0.8
   cupertino_icons: 1.0.3
+  mask_text_input_formatter: 2.0.0
+  page_turn:
+    git:
+      url: https://github.com/LucasMasayuki/page_turn
 
 dev_dependencies:
   build_runner:

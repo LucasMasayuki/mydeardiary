@@ -40,6 +40,7 @@ class DiaryList extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
+              margin: EdgeInsets.only(top: 8, bottom: 8),
               child: ListTile(
                 leading: Icon(Icons.calendar_today),
                 title: Text(
