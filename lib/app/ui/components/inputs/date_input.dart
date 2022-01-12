@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mydeardiary/app/ui/helpers/ui_error.dart';
 
 class DateInput extends StatelessWidget {
@@ -31,8 +30,6 @@ class DateInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mask = new MaskTextInputFormatter(mask: '##/##/####');
-
     return StreamBuilder<UIError?>(
       stream: dateErrorStream,
       builder: (context, snapshot) {

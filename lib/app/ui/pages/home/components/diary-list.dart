@@ -1,7 +1,9 @@
+import 'package:get/get.dart';
 import 'package:mydeardiary/app/domain/entities/diary_entity.dart';
 import 'package:mydeardiary/app/ui/pages/home/components/empty-view.dart';
 import 'package:mydeardiary/app/ui/pages/home/components/shimmer-loading-list.dart';
 import 'package:flutter/material.dart';
+import 'package:mydeardiary/app/ui/pages/home/home_presenter.dart';
 
 Map<String, IconData> iconMapping = {
   'ac_unit': Icons.ac_unit,
@@ -9,8 +11,9 @@ Map<String, IconData> iconMapping = {
 
 class DiaryList extends StatelessWidget {
   final Stream<List<DiaryEntity>?> getDiaryStream;
+  HomePresenter presenter = Get.find<HomePresenter>();
 
-  const DiaryList({
+  DiaryList({
     required this.getDiaryStream,
   });
 
@@ -26,7 +29,11 @@ class DiaryList extends StatelessWidget {
         final diaries = snapshot.data;
 
         if (diaries == null || diaries.length == 0) {
-          return EmptyView('No pages found', 'Add page', () => {});
+          return EmptyView(
+            'No pages found',
+            'Add page',
+            () => presenter.addDiary(),
+          );
         }
 
         return ListView.builder(
@@ -50,9 +57,16 @@ class DiaryList extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
+                onTap: () => presenter.readDiary(index),
                 visualDensity: VisualDensity.comfortable,
-                subtitle: Text(diaries[index].text),
+                subtitle: Text(
+                  diaries[index].text,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 trailing: Icon(iconMapping[diaries[index].humor]),
               ),
             );

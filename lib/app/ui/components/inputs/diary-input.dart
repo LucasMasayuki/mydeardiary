@@ -32,7 +32,7 @@ class _DiaryInputState extends State<DiaryInput> {
     _textFieldKey = GlobalKey();
     widget.controller.text = widget.initialText;
     _kLineHeight = widget.fontSize * _kHeight;
-    _kInitialHeight = _kLineHeight * 5;
+    _kInitialHeight = _kLineHeight * 10;
     lastKnownHeight = _kInitialHeight;
 
     // Wait for all widgets to be drawn before trying to draw lines again

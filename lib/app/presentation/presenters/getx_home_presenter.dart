@@ -50,4 +50,8 @@ class GetxHomePresenter extends GetxController
   void addDiary() {
     navigateTo = '/add-diary';
   }
+
+  void readDiary(int index) {
+    navigateTo = '/read-diary/$index';
+  }
 }

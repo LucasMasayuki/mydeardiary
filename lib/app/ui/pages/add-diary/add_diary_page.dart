@@ -8,7 +8,7 @@ import 'package:mydeardiary/app/ui/mixins/navigation_manager.dart';
 import 'package:mydeardiary/app/ui/mixins/ui_error_manager.dart';
 import 'package:mydeardiary/app/ui/pages/add-diary/add_diary_presenter.dart';
 
-import 'components/diary-input.dart';
+import '../../components/inputs/diary-input.dart';
 
 class AddDiaryPage extends StatelessWidget
     with LoadingManager, UIErrorManager, NavigationManager {
@@ -54,6 +54,7 @@ class AddDiaryPage extends StatelessWidget
               Padding(
                 padding: padding,
                 child: TitleInput(
+                  title: '',
                   titleErrorStream: presenter.titleErrorStream,
                   validateTitle: presenter.onChangeTitle,
                 ),

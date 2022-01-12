@@ -4,10 +4,12 @@ import 'package:mydeardiary/app/ui/helpers/ui_error.dart';
 class TitleInput extends StatelessWidget {
   final Stream<UIError?> titleErrorStream;
   final void Function(String) validateTitle;
+  final String title;
 
   const TitleInput({
     required this.titleErrorStream,
     required this.validateTitle,
+    this.title = '',
   });
 
   @override
@@ -16,6 +18,7 @@ class TitleInput extends StatelessWidget {
       stream: titleErrorStream,
       builder: (context, snapshot) {
         return TextFormField(
+          initialValue: this.title,
           decoration: InputDecoration(
             // filled: true,
             // fillColor: Theme.of(context).primaryColor,

@@ -10,4 +10,5 @@ abstract class HomePresenter {
 
   Future<void> getDiaries();
   void addDiary();
+  void readDiary(int index);
 }

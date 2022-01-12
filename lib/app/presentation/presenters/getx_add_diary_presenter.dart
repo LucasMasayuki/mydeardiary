@@ -8,7 +8,6 @@ import 'package:mydeardiary/app/presentation/mixins/navigation_manager.dart';
 import 'package:mydeardiary/app/presentation/mixins/ui_error_manager.dart';
 import 'package:mydeardiary/app/ui/helpers/ui_error.dart';
 import 'package:mydeardiary/app/ui/pages/add-diary/add_diary_presenter.dart';
-import 'package:mydeardiary/app/ui/pages/add-diary/diary_view_model.dart';
 
 class GetxAddDiaryPresenter extends GetxController
     with LoadingManager, NavigationManager, FormManager, UIErrorManager
@@ -21,14 +20,12 @@ class GetxAddDiaryPresenter extends GetxController
 
   final _titleError = Rx<UIError>(UIError.unexpected);
   final _dateError = Rx<UIError>(UIError.unexpected);
-  final _diary = Rx<DiaryViewModel?>(null);
 
   String _title = '';
   DateTime _date = new DateTime.now();
 
   Stream<UIError?> get titleErrorStream => _titleError.stream;
   Stream<UIError?> get dateErrorStream => _dateError.stream;
-  Stream<DiaryViewModel?> get diaryStream => _diary.stream;
 
   void onChangeTitle(String title) {
     _title = title;
