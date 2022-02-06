@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:mydeardiary/app/ui/components/inputs/diary-input.dart';
 import 'package:mydeardiary/app/ui/pages/read-diary/read_diary_view_model.dart';
+
+import 'lines-of-diary.dart';
 
 class ReadDiaryUniquePage extends StatelessWidget {
   final bool withHeaders;
@@ -33,6 +34,7 @@ class ReadDiaryUniquePage extends StatelessWidget {
               initialValue: DateFormat.yMMMMd('en_US').format(
                 viewModel.date,
               ),
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 border: UnderlineInputBorder(),
                 enabledBorder: UnderlineInputBorder(
@@ -53,6 +55,7 @@ class ReadDiaryUniquePage extends StatelessWidget {
             padding: padding,
             child: TextFormField(
               initialValue: viewModel.title,
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 border: UnderlineInputBorder(),
                 enabledBorder: UnderlineInputBorder(
@@ -69,18 +72,15 @@ class ReadDiaryUniquePage extends StatelessWidget {
             ),
           ),
         Padding(
-          padding: padding,
-          child: DiaryInput(
-            initialText: viewModel.pages[page],
-            controller: new TextEditingController(),
+          padding: EdgeInsets.only(
+            left: 28,
+            right: 28,
+          ),
+          child: LinesOfDiary(
+            text: viewModel.pages[page],
             fontSize: 20,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            bottom: 24,
-          ),
-        )
       ],
     );
   }

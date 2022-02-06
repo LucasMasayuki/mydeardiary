@@ -79,6 +79,9 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
             );
           }).toList();
 
+          var lines = 30;
+          var height = 48;
+
           return Layout(
             actions: [
               DropdownButton<int>(
@@ -104,7 +107,9 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
             withBackButton: true,
             body: SingleChildScrollView(
               child: Container(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height +
+                    (MediaQuery.of(context).size.height - (lines * height))
+                        .abs(),
                 width: MediaQuery.of(context).size.width,
                 child: PageTurn(
                   key: _controller,

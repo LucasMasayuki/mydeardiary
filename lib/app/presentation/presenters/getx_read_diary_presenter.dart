@@ -43,10 +43,15 @@ class GetxReadDiaryPresenter extends GetxController
       var i = 0;
 
       lines?.forEach((line) {
-        page = '$page \n $line';
+        if (i == 0) {
+          page = line;
+        } else {
+          page = '$page \n $line';
+        }
 
-        if (i % 30 == 0 && i != 0) {
+        if (i % 29 == 0 && i != 0) {
           pages.add(page);
+
           page = '';
         }
 

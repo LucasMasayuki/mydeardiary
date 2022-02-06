@@ -1,6 +1,5 @@
 import 'package:mydeardiary/app/domain/entities/diary_entity.dart';
 import 'package:mydeardiary/app/ui/components/layout.dart';
-import 'package:mydeardiary/app/ui/pages/home/components/diary-list.dart';
 import 'package:mydeardiary/app/ui/pages/home/home_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:mydeardiary/app/ui/mixins/loading_manager.dart';
@@ -9,6 +8,10 @@ import 'package:mydeardiary/app/ui/mixins/ui_error_manager.dart';
 
 import 'components/empty-view.dart';
 import 'components/shimmer-loading-list.dart';
+
+Map<String, IconData> iconMapping = {
+  'ac_unit': Icons.ac_unit,
+};
 
 class HomePage extends StatelessWidget
     with LoadingManager, UIErrorManager, NavigationManager {
@@ -50,24 +53,42 @@ class HomePage extends StatelessWidget
                   return Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.blueAccent,
+                        color: Colors.white,
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                     ),
                     margin: EdgeInsets.only(top: 8, bottom: 8),
                     child: ListTile(
-                      leading: Icon(Icons.calendar_today),
+                      leading: Container(
+                        height: double.infinity,
+                        child: Icon(
+                          Icons.calendar_today,
+                          color: Colors.white,
+                        ),
+                      ),
                       title: Text(
                         diaries[index].title ?? diaries[index].text,
                         style: TextStyle(
                           fontFamily: 'IndieFlower',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       onTap: () => presenter.readDiary(index),
                       visualDensity: VisualDensity.comfortable,
-                      subtitle: Text(diaries[index].text),
+                      subtitle: Text(
+                        diaries[index].text,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: 'IndieFlower',
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
                       trailing: Icon(iconMapping[diaries[index].humor]),
                     ),
                   );

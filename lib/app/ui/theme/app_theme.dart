@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData makeAppTheme() {
-  final primaryColor = Colors.lightBlueAccent;
+  final primaryColor = Colors.pinkAccent;
   final primaryColorDark = Color.fromRGBO(96, 0, 39, 1);
   final primaryColorLight = Color.fromRGBO(188, 71, 123, 1);
   final secondaryColor = Color.fromRGBO(0, 77, 64, 1);
