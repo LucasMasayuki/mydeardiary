@@ -7,7 +7,6 @@ mixin NavigationManager {
   }) {
     stream.listen(
       (page) {
-        print(page);
         if (page?.isNotEmpty == true) {
           if (clear == true) {
             Get.offAllNamed(page!);

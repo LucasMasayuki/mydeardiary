@@ -13,6 +13,7 @@ dependencies:
    sdk: flutter
   graphql_flutter: 5.0.0
   dio: 4.0.0
+  flutter_colorpicker: ^1.0.3
   http:
   equatable:
   injector: 2.0.0

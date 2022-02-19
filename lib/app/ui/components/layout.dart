@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
+import 'package:mydeardiary/app/domain/entities/setting_entity.dart';
 
 class Layout extends StatelessWidget {
   final Widget body;
   final FloatingActionButton? floatingActionButton;
   final bool withBackButton;
   final String title;
+  final SettingEntity? setting;
   final List<Widget>? actions;
 
   Layout({
     required this.body,
+    required this.setting,
     this.floatingActionButton,
     this.withBackButton = false,
     this.title = 'My dear diary',
@@ -19,7 +23,7 @@ class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: colorFromHex(setting?.primaryColor ?? ''),
       appBar: AppBar(
         actions: this.actions,
         leading: withBackButton
@@ -34,7 +38,7 @@ class Layout extends StatelessWidget {
         title: InkWell(
           child: Text(title.tr),
           onTap: () {
-            Get.to('/home');
+            Get.offNamed('/home');
           },
         ),
       ),
@@ -54,8 +58,7 @@ class Layout extends StatelessWidget {
                   ListTile(
                     title: Text('Settings'.tr),
                     onTap: () {
-                      // Update the state of the app.
-                      // ...
+                      Get.offNamed('/settings');
                     },
                   ),
                   ListTile(
