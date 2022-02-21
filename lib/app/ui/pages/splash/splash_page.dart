@@ -26,8 +26,13 @@ class SplashPage extends StatelessWidget with NavigationManager {
         return StreamBuilder<SettingEntity?>(
           stream: settingPresenter.settingStream,
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Container();
+            if (snapshot.connectionState == ConnectionState.waiting &&
+                snapshot.data == null) {
+              return Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             }
 
             final setting = snapshot.data;

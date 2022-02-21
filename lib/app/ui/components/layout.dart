@@ -23,20 +23,30 @@ class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorFromHex(setting?.primaryColor ?? ''),
+      backgroundColor: colorFromHex(setting?.pageColor ?? ''),
       appBar: AppBar(
+        backgroundColor: colorFromHex(setting?.primaryColor ?? ''),
         actions: this.actions,
         leading: withBackButton
             ? IconButton(
                 onPressed: () {
                   Get.offNamed('/home');
                 },
-                icon: Icon(Icons.chevron_left),
+                icon: Icon(
+                  Icons.chevron_left,
+                  color: colorFromHex(setting?.fontColor ?? ''),
+                ),
               )
             : null,
         automaticallyImplyLeading: true,
         title: InkWell(
-          child: Text(title.tr),
+          child: Text(
+            title.tr,
+            style: TextStyle(
+              color: colorFromHex(setting?.fontColor ?? ''),
+              fontFamily: setting?.fontFamily,
+            ),
+          ),
           onTap: () {
             Get.offNamed('/home');
           },
@@ -53,16 +63,30 @@ class Layout extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.blue,
                     ),
-                    child: Text('My dear diary'),
+                    child: Text(
+                      'My dear diary',
+                    ),
                   ),
                   ListTile(
-                    title: Text('Settings'.tr),
+                    title: Text(
+                      'Settings'.tr,
+                      style: TextStyle(
+                        color: colorFromHex(setting?.fontColor ?? ''),
+                        fontFamily: setting?.fontFamily,
+                      ),
+                    ),
                     onTap: () {
                       Get.offNamed('/settings');
                     },
                   ),
                   ListTile(
-                    title: Text('login'.tr),
+                    title: Text(
+                      'login'.tr,
+                      style: TextStyle(
+                        color: colorFromHex(setting?.fontColor ?? ''),
+                        fontFamily: setting?.fontFamily,
+                      ),
+                    ),
                     onTap: () {
                       // Update the state of the app.
                       // ...

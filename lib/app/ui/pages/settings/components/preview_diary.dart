@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:mydeardiary/app/domain/entities/setting_entity.dart';
 
 class PreviewDiary extends StatelessWidget {
   final double _kHeight = 2.0;
   final String text;
-  final double fontSize;
   final double height;
   final double width;
+  final SettingEntity? setting;
 
   PreviewDiary({
     required this.text,
     required this.height,
     required this.width,
-    this.fontSize = 32.0,
+    required this.setting,
   });
 
   Widget _buildLines() {
-    var height = fontSize * _kHeight;
+    var height = setting?.fontSize ?? 32 * _kHeight;
 
     int numberOfLinesThatNeedToBeBuilt = this.height ~/ height;
 
@@ -40,8 +42,6 @@ class PreviewDiary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = fontSize * _kHeight;
-
     return Column(
       children: [
         Stack(
@@ -59,7 +59,9 @@ class PreviewDiary extends StatelessWidget {
                   decoration: _inputDecoration(),
                   keyboardType: TextInputType.multiline,
                   style: TextStyle(
-                    fontSize: fontSize,
+                    color: colorFromHex(setting?.fontColor ?? ''),
+                    fontFamily: setting?.fontFamily,
+                    fontSize: setting?.fontSize,
                     height: _kHeight,
                   ),
                 ),

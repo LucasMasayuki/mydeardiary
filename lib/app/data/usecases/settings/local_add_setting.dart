@@ -22,10 +22,8 @@ class LocalAddSetting implements AddSetting {
         primaryColor: params.primaryColor,
       );
 
-      print(entity);
-
       await saveSharedPreferences.save(
-        key: 'setting',
+        key: 'settings',
         value: json.encode(entity.toJson()),
       );
 

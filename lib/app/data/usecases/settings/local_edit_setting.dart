@@ -23,7 +23,7 @@ class LocalEditSetting implements EditSetting {
       );
 
       await saveSharedPreferences.save(
-        key: 'setting',
+        key: 'settings',
         value: json.encode(entity.toJson()),
       );
     } catch (error) {

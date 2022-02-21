@@ -27,7 +27,13 @@ class GetxSettingPresenter extends GetxController
     required this.loadCurrentUserCase,
   });
 
-  final _setting = Rx<SettingEntity?>(null);
+  final Rx<SettingEntity?> _setting = (new SettingEntity(
+    fontColor: DEFAULT_FONT_COLOR,
+    fontFamily: DEFAULT_FONT_FAMILY,
+    fontSize: DEFAULT_FONT_SIZE,
+    pageColor: DEFAULT_PAGE_COLOR,
+    primaryColor: DEFAULT_PRIMARY_COLOR,
+  )).obs;
 
   Stream<SettingEntity?> get settingStream => _setting.stream;
 

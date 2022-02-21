@@ -5,11 +5,11 @@ abstract class EditSetting {
 }
 
 class EditSettingParams extends Equatable {
-  final String pageColor;
-  final String fontColor;
-  final double fontSize;
-  final String fontFamily;
-  final String primaryColor;
+  final String? pageColor;
+  final String? fontColor;
+  final double? fontSize;
+  final String? fontFamily;
+  final String? primaryColor;
 
   List get props => [
         pageColor,

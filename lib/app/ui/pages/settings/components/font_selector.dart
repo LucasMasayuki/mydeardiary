@@ -17,7 +17,36 @@ class FontSelector extends StatelessWidget {
             return SimpleDialog(
               titlePadding: const EdgeInsets.all(0),
               contentPadding: const EdgeInsets.all(0),
-              children: [ListTile(leading: Text('test'), title: Text('test'))],
+              children: [
+                ListTile(
+                  title: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                    style: TextStyle(fontFamily: 'indieflower'),
+                  ),
+                  onTap: () => this.onClickFont('indieflower'),
+                ),
+                ListTile(
+                  title: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                    style: TextStyle(fontFamily: 'festive'),
+                  ),
+                  onTap: () => this.onClickFont('festive'),
+                ),
+                ListTile(
+                  title: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                    style: TextStyle(fontFamily: 'birthstone'),
+                  ),
+                  onTap: () => this.onClickFont('birthstone'),
+                ),
+                ListTile(
+                  title: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                    style: TextStyle(fontFamily: 'ephesis'),
+                  ),
+                  onTap: () => this.onClickFont('ephesis'),
+                ),
+              ],
             );
           },
         );

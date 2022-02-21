@@ -9,6 +9,7 @@ import 'package:mydeardiary/app/ui/pages/home/components/empty-view.dart';
 import 'package:mydeardiary/app/ui/pages/read-diary/read_diary_presenter.dart';
 import 'package:mydeardiary/app/ui/pages/read-diary/read_diary_view_model.dart';
 import 'package:mydeardiary/app/ui/pages/settings/settings_presenter.dart';
+import 'package:mydeardiary/app/utils/color_helper.dart';
 import 'package:page_turn/page_turn.dart';
 
 import 'components/read_diary_unique_page.dart';
@@ -52,7 +53,8 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
         return StreamBuilder<SettingEntity?>(
           stream: settingPresenter.settingStream,
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (snapshot.connectionState == ConnectionState.waiting &&
+                snapshot.data == null) {
               return Container();
             }
 
@@ -68,7 +70,8 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
                 return StreamBuilder<ReadDiaryViewModel?>(
                   stream: presenter.diaryStream,
                   builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+                    if (snapshot.connectionState == ConnectionState.waiting &&
+                        snapshot.data == null) {
                       return Layout(
                         setting: setting,
                         title: 'Carregando...',
@@ -134,7 +137,8 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
                           width: MediaQuery.of(context).size.width,
                           child: PageTurn(
                             key: _controller,
-                            backgroundColor: Theme.of(context).primaryColor,
+                            backgroundColor:
+                                createColorFromHex(setting?.pageColor ?? ''),
                             children: pages,
                           ),
                         ),
