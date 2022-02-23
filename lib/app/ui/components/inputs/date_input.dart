@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mydeardiary/app/domain/entities/setting_entity.dart';
 import 'package:mydeardiary/app/ui/helpers/ui_error.dart';
+import 'package:mydeardiary/app/utils/color_helper.dart';
 
 class DateInput extends StatelessWidget {
   final Stream<UIError?> dateErrorStream;
   final void Function(DateTime) onChangeDate;
   final DateTime? initialValue;
+  final SettingEntity? setting;
 
   const DateInput({
+    Key? key,
     required this.dateErrorStream,
     required this.onChangeDate,
     this.initialValue,
-  });
+    this.setting,
+  }) : super(key: key);
 
   Future<void> _selectDate(BuildContext context) async {
     final now = DateTime.now();
@@ -34,8 +39,8 @@ class DateInput extends StatelessWidget {
       stream: dateErrorStream,
       builder: (context, snapshot) {
         return Container(
-          padding: EdgeInsets.only(bottom: 2, top: 2),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.only(bottom: 2, top: 2),
+          decoration: const BoxDecoration(
             border: Border(
               bottom: BorderSide(
                 color: Colors.white,
@@ -48,8 +53,8 @@ class DateInput extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               IconButton(
-                icon: Icon(Icons.calendar_today),
-                color: Theme.of(context).primaryColorLight,
+                icon: const Icon(Icons.calendar_today),
+                color: createColorFromHex(setting?.primaryColor ?? ''),
                 onPressed: () {
                   _selectDate(context);
                 },
@@ -59,35 +64,15 @@ class DateInput extends StatelessWidget {
                   initialValue ?? DateTime.now(),
                 ),
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: createColorFromHex(setting?.fontColor ?? ''),
+                  fontFamily: setting?.fontFamily,
+                  fontSize: setting?.fontSize,
+                ),
               ),
             ],
           ),
         );
-        // return TextFormField(
-        //   decoration: InputDecoration(
-        //     prefixIcon: IconButton(
-        //       icon: Icon(Icons.calendar_today),
-        //       color: Theme.of(context).primaryColorLight,
-        //       onPressed: () {
-        //         _selectDate(context);
-        //       },
-        //     ),
-        //     errorText: snapshot.hasData ? snapshot.data!.description : null,
-        //     border: UnderlineInputBorder(),
-        //     enabledBorder: UnderlineInputBorder(
-        //       borderSide: BorderSide(color: Colors.white),
-        //     ),
-        //     disabledBorder: UnderlineInputBorder(
-        //       borderSide: BorderSide(color: Colors.white),
-        //     ),
-        //     focusedBorder: UnderlineInputBorder(
-        //       borderSide: BorderSide(color: Colors.white),
-        //     ),
-        //   ),
-        //   initialValue: DateFormat.yMMMMd('en_US').format(
-        //     initialValue ?? DateTime.now(),
-        //   ),
-        // );
       },
     );
   }

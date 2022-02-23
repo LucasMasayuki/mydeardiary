@@ -7,7 +7,7 @@ void main() {
   MinLengthValidation? sut;
 
   setUp(() {
-    sut = MinLengthValidation(field: 'any_field', size: 5);
+    sut = const MinLengthValidation(field: 'any_field', size: 5);
   });
 
   test('Should return error if value is empty', () {

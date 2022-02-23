@@ -5,11 +5,12 @@ abstract class EditDiary {
 }
 
 class EditDiaryParams extends Equatable {
-  late final int index;
-  late final String title;
-  late final DateTime date;
-  late final String text;
+  final int index;
+  final String title;
+  final DateTime date;
+  final String text;
 
+  @override
   List get props => [
         index,
         title,
@@ -17,7 +18,7 @@ class EditDiaryParams extends Equatable {
         text,
       ];
 
-  EditDiaryParams({
+  const EditDiaryParams({
     required this.index,
     required this.title,
     required this.date,

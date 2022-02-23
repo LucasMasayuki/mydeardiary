@@ -18,7 +18,7 @@ class SignUpPage extends StatelessWidget
     with KeyboardManager, LoadingManager, UIErrorManager, NavigationManager {
   final SignUpPresenter presenter;
 
-  SignUpPage(this.presenter);
+  SignUpPage(this.presenter, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +35,10 @@ class SignUpPage extends StatelessWidget
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  LoginHeader(),
+                  const LoginHeader(),
                   Headline1(text: R.string.addAccount),
                   Padding(
-                    padding: EdgeInsets.all(32),
+                    padding: const EdgeInsets.all(32),
                     child: Obx(
                       () => Form(
                         child: Column(
@@ -48,7 +48,7 @@ class SignUpPage extends StatelessWidget
                               validateName: presenter.validateName,
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8),
+                              padding: const EdgeInsets.symmetric(vertical: 8),
                               child: EmailInput(
                                 emailErrorStream: presenter.emailErrorStream,
                                 validateEmail: presenter.validateEmail,
@@ -60,7 +60,8 @@ class SignUpPage extends StatelessWidget
                               validatePassword: presenter.validatePassword,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 8, bottom: 32),
+                              padding:
+                                  const EdgeInsets.only(top: 8, bottom: 32),
                               child: PasswordConfirmationInput(
                                 passwordConfirmationErrorStream:
                                     presenter.passwordConfirmationErrorStream,
@@ -74,7 +75,7 @@ class SignUpPage extends StatelessWidget
                             ),
                             TextButton.icon(
                               onPressed: presenter.goToLogin,
-                              icon: Icon(Icons.exit_to_app),
+                              icon: const Icon(Icons.exit_to_app),
                               label: Text(R.string.login),
                             )
                           ],

@@ -10,7 +10,9 @@ class SplashPage extends StatelessWidget with NavigationManager {
   final SettingPresenter settingPresenter;
   final SplashPresenter presenter;
 
-  SplashPage({required this.presenter, required this.settingPresenter});
+  SplashPage(
+      {Key? key, required this.presenter, required this.settingPresenter})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,8 @@ class SplashPage extends StatelessWidget with NavigationManager {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting &&
                 snapshot.data == null) {
-              return Container(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
 
@@ -50,7 +50,7 @@ class SplashPage extends StatelessWidget with NavigationManager {
                         fontSize: 52,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(bottom: 32)),
+                    const Padding(padding: EdgeInsets.only(bottom: 32)),
                     CircularProgressIndicator(
                       color: createColorFromHex(setting?.fontColor ?? ''),
                     )

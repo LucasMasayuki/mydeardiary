@@ -16,9 +16,6 @@ class ColorSelector extends StatefulWidget {
 }
 
 class _ColorSelectorState extends State<ColorSelector> {
-  bool _enableLabel = true;
-  bool _portraitOnly = false;
-
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -45,7 +42,7 @@ class _ColorSelectorState extends State<ColorSelector> {
           },
         );
       },
-      icon: Icon(Icons.palette_outlined),
+      icon: const Icon(Icons.palette_outlined),
     );
   }
 }

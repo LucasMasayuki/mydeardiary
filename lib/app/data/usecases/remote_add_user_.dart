@@ -11,11 +11,12 @@ class RemoteAddUser implements AddUser {
 
   RemoteAddUser({required this.graphQlClient});
 
+  @override
   Future<UserEntity> add(AddUserParams params) async {
     final body = RemoteAddUserParams.fromDomain(params).toJson();
 
     try {
-      final responseData = await graphQlClient.mutate(SIGNUP_MUTATION, body);
+      final responseData = await graphQlClient.mutate(signupMutation, body);
 
       return RemoteUserModel.fromJson(responseData).toEntity();
     } on HttpError catch (error) {

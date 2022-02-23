@@ -8,11 +8,12 @@ abstract class GetSetting {
 class GetSettingParams extends Equatable {
   final int userId;
 
+  @override
   List get props => [
         userId,
       ];
 
-  GetSettingParams({
+  const GetSettingParams({
     required this.userId,
   });
 }

@@ -8,6 +8,7 @@ class LocalSaveCurrentUser implements SaveCurrentUser {
 
   LocalSaveCurrentUser({required this.saveSharedPreferences});
 
+  @override
   Future<void> save(UserEntity user) async {
     try {
       await saveSharedPreferences.save(key: 'token', value: user.token!);

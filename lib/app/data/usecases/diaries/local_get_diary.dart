@@ -12,6 +12,7 @@ class LocalGetDiary implements GetDiary {
     required this.fetchSharedPreferences,
   });
 
+  @override
   Future<DiaryEntity?> getDiary(GetDiaryParams params) async {
     try {
       final diaries = await fetchSharedPreferences.fetch('diaries');
@@ -23,7 +24,6 @@ class LocalGetDiary implements GetDiary {
 
       return DiaryEntity.fromJson(diariesRaw[params.diaryId]);
     } catch (error) {
-      print(error);
       throw DomainError.unexpected;
     }
   }

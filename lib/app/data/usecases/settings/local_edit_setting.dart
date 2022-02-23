@@ -12,9 +12,10 @@ class LocalEditSetting implements EditSetting {
     required this.saveSharedPreferences,
   });
 
+  @override
   Future<void> editSetting(EditSettingParams params) async {
     try {
-      final entity = new SettingEntity(
+      final entity = SettingEntity(
         fontColor: params.fontColor,
         fontFamily: params.fontFamily,
         fontSize: params.fontSize,
@@ -27,7 +28,6 @@ class LocalEditSetting implements EditSetting {
         value: json.encode(entity.toJson()),
       );
     } catch (error) {
-      print(error);
       throw DomainError.unexpected;
     }
   }

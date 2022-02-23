@@ -30,20 +30,26 @@ class GetxEditDiaryPresenter extends GetxController
   final _diary = Rx<DiaryEntity?>(null);
 
   String _title = '';
-  DateTime _date = new DateTime.now();
+  DateTime _date = DateTime.now();
 
+  @override
   Stream<UIError?> get titleErrorStream => _titleError.stream;
+  @override
   Stream<UIError?> get dateErrorStream => _dateError.stream;
+  @override
   Stream<DiaryEntity?> get diaryStream => _diary.stream;
 
+  @override
   void onChangeTitle(String title) {
     _title = title;
   }
 
+  @override
   void onChangeDate(DateTime date) {
     _date = date;
   }
 
+  @override
   Future<void> editDiary(String text, int index) async {
     if (text == '' || _title == '') {
       mainError = UIError.requiredField;
@@ -51,7 +57,7 @@ class GetxEditDiaryPresenter extends GetxController
     }
 
     try {
-      final params = new EditDiaryParams(
+      final params = EditDiaryParams(
         date: _date,
         title: _title,
         text: text,
@@ -74,13 +80,14 @@ class GetxEditDiaryPresenter extends GetxController
     }
   }
 
+  @override
   Future<void> getDiary(int index) async {
     mainError = UIError.nothing;
 
     try {
       final user = await loadCurrentUserCase.load();
 
-      final params = new GetDiaryParams(userId: user.id ?? 0, diaryId: index);
+      final params = GetDiaryParams(userId: user.id ?? 0, diaryId: index);
       final diary = await getDiaryCase.getDiary(params);
 
       _diary.value = diary;

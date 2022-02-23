@@ -19,7 +19,9 @@ class GetxHomePresenter extends GetxController
   final _getDiariesError = Rx<UIError>(UIError.unexpected);
   final _diaries = Rx<List<DiaryEntity>>([]);
 
+  @override
   Stream<UIError?> get getDiariesErrorStream => _getDiariesError.stream;
+  @override
   Stream<List<DiaryEntity>?> get diariesStream => _diaries.stream;
 
   GetxHomePresenter({
@@ -27,6 +29,7 @@ class GetxHomePresenter extends GetxController
     required this.loadCurrentUserCase,
   });
 
+  @override
   Future<void> getDiaries() async {
     try {
       final user = await loadCurrentUserCase.load();
@@ -47,10 +50,12 @@ class GetxHomePresenter extends GetxController
     }
   }
 
+  @override
   void addDiary() {
     navigateTo = '/add-diary';
   }
 
+  @override
   void readDiary(int index) {
     navigateTo = '/read-diary/$index';
   }

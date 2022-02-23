@@ -6,9 +6,10 @@ class SignUpButton extends StatelessWidget {
   final void Function() signUp;
 
   const SignUpButton({
+    Key? key,
     required this.isFormValidStream,
     required this.signUp,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

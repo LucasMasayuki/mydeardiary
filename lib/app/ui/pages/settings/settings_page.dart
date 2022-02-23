@@ -18,6 +18,8 @@ class SettingsPage extends StatelessWidget
     with LoadingManager, UIErrorManager, NavigationManager {
   SettingPresenter presenter = Get.find<SettingPresenter>();
 
+  SettingsPage({Key? key}) : super(key: key);
+
   Future<void> onClickEditSetting(EditSettingParams params) async {
     try {
       await presenter.editSetting(params);
@@ -38,10 +40,8 @@ class SettingsPage extends StatelessWidget
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting &&
               snapshot.data == null) {
-            return Container(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           }
 
@@ -49,7 +49,7 @@ class SettingsPage extends StatelessWidget
 
           return Layout(
             setting: setting,
-            actions: [],
+            actions: const [],
             title: 'Configuração',
             withBackButton: true,
             body: SingleChildScrollView(
@@ -70,7 +70,7 @@ class SettingsPage extends StatelessWidget
                       children: [
                         ColorSelectorRange(
                           onClickColor: (Color color) {
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: setting?.fontColor,
                               fontFamily: setting?.fontFamily,
                               fontSize: setting?.fontSize,
@@ -84,7 +84,7 @@ class SettingsPage extends StatelessWidget
                         ColorSelector(
                           pickerColor: Colors.black,
                           onColorChanged: (color) {
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: setting?.fontColor,
                               fontFamily: setting?.fontFamily,
                               fontSize: setting?.fontSize,
@@ -108,7 +108,7 @@ class SettingsPage extends StatelessWidget
                       children: [
                         ColorSelectorRange(
                           onClickColor: (Color color) {
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: setting?.fontColor,
                               fontFamily: setting?.fontFamily,
                               fontSize: setting?.fontSize,
@@ -122,7 +122,7 @@ class SettingsPage extends StatelessWidget
                         ColorSelector(
                           pickerColor: Colors.black,
                           onColorChanged: (Color color) {
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: setting?.fontColor,
                               fontFamily: setting?.fontFamily,
                               fontSize: setting?.fontSize,
@@ -146,7 +146,7 @@ class SettingsPage extends StatelessWidget
                       children: [
                         ColorSelectorRange(
                           onClickColor: (Color color) {
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: colorToHex(color),
                               fontFamily: setting?.fontFamily,
                               fontSize: setting?.fontSize,
@@ -160,7 +160,7 @@ class SettingsPage extends StatelessWidget
                         ColorSelector(
                           pickerColor: Colors.black,
                           onColorChanged: (Color color) {
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: colorToHex(color),
                               fontFamily: setting?.fontFamily,
                               fontSize: setting?.fontSize,
@@ -184,7 +184,7 @@ class SettingsPage extends StatelessWidget
                         ),
                         FontSelector(
                           onClickFont: (String fontFamily) {
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: setting?.fontColor,
                               fontFamily: fontFamily,
                               fontSize: setting?.fontSize,
@@ -211,8 +211,7 @@ class SettingsPage extends StatelessWidget
                           max: 32,
                           value: setting?.fontSize ?? 12,
                           onChanged: (double size) {
-                            print(size);
-                            var params = new EditSettingParams(
+                            var params = EditSettingParams(
                               fontColor: setting?.fontColor,
                               fontFamily: setting?.fontFamily,
                               fontSize: size,
@@ -225,7 +224,7 @@ class SettingsPage extends StatelessWidget
                         ),
                       ],
                     ),
-                    Padding(padding: EdgeInsets.only(bottom: 30)),
+                    const Padding(padding: EdgeInsets.only(bottom: 30)),
                     PreviewDiary(
                       setting: setting,
                       text:
@@ -235,7 +234,7 @@ class SettingsPage extends StatelessWidget
                     ),
                   ],
                 ),
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
               ),
             ),
           );

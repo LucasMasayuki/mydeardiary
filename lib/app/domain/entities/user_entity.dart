@@ -4,7 +4,8 @@ class UserEntity extends Equatable {
   final int? id;
   final String? token;
 
+  @override
   List get props => [token];
 
-  UserEntity({this.token, this.id});
+  const UserEntity({this.token, this.id});
 }

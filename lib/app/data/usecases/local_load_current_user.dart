@@ -10,6 +10,7 @@ class LocalLoadCurrentUser implements LoadCurrentUser {
     required this.fetchSharedPreferences,
   });
 
+  @override
   Future<UserEntity> load() async {
     try {
       final token = await fetchSharedPreferences.fetch('token');

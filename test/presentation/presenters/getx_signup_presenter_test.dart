@@ -27,7 +27,7 @@ void main() {
 
   PostExpectation mockValidationCall(String? field) => when(
         validation.validate(
-          field: field == null ? anyNamed('field') : field,
+          field: field ?? anyNamed('field'),
           input: anyNamed('input'),
         ),
       );

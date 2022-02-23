@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:mydeardiary/app/domain/entities/diary_entity.dart';
 import 'package:mydeardiary/app/domain/entities/setting_entity.dart';
 import 'package:mydeardiary/app/ui/components/layout.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget
   final HomePresenter presenter;
   final SettingPresenter settingPresenter;
 
-  HomePage(this.presenter, this.settingPresenter);
+  HomePage(this.presenter, this.settingPresenter, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,22 +52,25 @@ class HomePage extends StatelessWidget
                     stream: presenter.diariesStream,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return ShimmerLoadingList();
+                        return const ShimmerLoadingList();
                       }
 
                       final diaries = snapshot.data;
 
-                      if (diaries == null || diaries.length == 0) {
+                      if (diaries == null || diaries.isEmpty) {
                         return EmptyView(
                           'No pages found',
                           'Add page',
                           () => presenter.addDiary(),
+                          setting,
                         );
                       }
 
+                      final formatter = DateFormat('dd/MM/yy');
+
                       return ListView.builder(
                         itemCount: diaries.length,
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         itemBuilder: (_, index) {
                           return Container(
                             decoration: BoxDecoration(
@@ -75,18 +79,37 @@ class HomePage extends StatelessWidget
                                   setting?.fontColor ?? '',
                                 ),
                               ),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(8),
+                              ),
                             ),
-                            margin: EdgeInsets.only(top: 8, bottom: 8),
+                            margin: const EdgeInsets.only(top: 8, bottom: 8),
                             child: ListTile(
-                              leading: Container(
+                              leading: SizedBox(
                                 height: double.infinity,
-                                child: Icon(
-                                  Icons.calendar_today,
-                                  color: createColorFromHex(
-                                    setting?.fontColor ?? '',
-                                  ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: createColorFromHex(
+                                        setting?.fontColor ?? '',
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      formatter.format(diaries[index].date),
+                                      style: TextStyle(
+                                        fontFamily: setting?.fontFamily,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: createColorFromHex(
+                                          setting?.fontColor ?? '',
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                               title: Text(
@@ -126,8 +149,19 @@ class HomePage extends StatelessWidget
                 },
               ),
               floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.edit),
+                child: Icon(
+                  Icons.edit,
+                  color: createColorFromHex(
+                    setting?.fontColor ?? '',
+                  ),
+                ),
                 onPressed: presenter.addDiary,
+                backgroundColor: createColorFromHex(
+                  setting?.primaryColor ?? '',
+                ),
+                focusColor: createColorFromHex(
+                  setting?.primaryColor ?? '',
+                ).withOpacity(0.5),
               ),
             );
           },

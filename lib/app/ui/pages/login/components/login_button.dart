@@ -6,9 +6,10 @@ class LoginButton extends StatelessWidget {
   final void Function()? auth;
 
   const LoginButton({
+    Key? key,
     required this.isFormValidStream,
     required this.auth,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

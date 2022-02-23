@@ -76,18 +76,21 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
                         setting: setting,
                         title: 'Carregando...',
                         withBackButton: true,
-                        body: Container(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                        body: const Center(
+                          child: CircularProgressIndicator(),
                         ),
                       );
                     }
 
                     final viewModel = snapshot.data;
 
-                    if (viewModel == null || viewModel.pages.length == 0) {
-                      return EmptyView('No pages found', 'Add page', () => {});
+                    if (viewModel == null || viewModel.pages.isEmpty) {
+                      return EmptyView(
+                        'No pages found',
+                        'Add page',
+                        () => {},
+                        setting,
+                      );
                     }
 
                     var i = -1;
@@ -98,6 +101,7 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
                         withHeaders: i == 0,
                         page: i,
                         viewModel: viewModel,
+                        setting: setting,
                       );
                     }).toList();
 
@@ -123,13 +127,13 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
                           onPressed: () {
                             presenter.goToEditDiary(int.parse(index!));
                           },
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                         ),
                       ],
                       title: viewModel.title,
                       withBackButton: true,
                       body: SingleChildScrollView(
-                        child: Container(
+                        child: SizedBox(
                           height: MediaQuery.of(context).size.height +
                               (MediaQuery.of(context).size.height -
                                       (lines * height))

@@ -8,17 +8,18 @@ import 'package:mydeardiary/app/ui/components/inputs/diary-input.dart';
 class DiaryPage extends StatelessWidget {
   final bool withHeaders;
   final int numberOfLines;
-  AddDiaryPresenter presenter = Get.find<AddDiaryPresenter>();
+  final AddDiaryPresenter presenter = Get.find<AddDiaryPresenter>();
 
   DiaryPage({
+    Key? key,
     this.withHeaders = false,
     this.numberOfLines = 16,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final controller = TextEditingController();
-    final padding = EdgeInsets.only(
+    const padding = EdgeInsets.only(
       left: 28,
       right: 28,
       top: 4,
@@ -28,22 +29,22 @@ class DiaryPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        if (this.withHeaders)
+        if (withHeaders)
           Padding(
             padding: padding,
             child: DateInput(
               initialValue: DateTime.now(),
-              dateErrorStream: this.presenter.dateErrorStream,
-              onChangeDate: this.presenter.onChangeDate,
+              dateErrorStream: presenter.dateErrorStream,
+              onChangeDate: presenter.onChangeDate,
             ),
           ),
-        if (this.withHeaders)
+        if (withHeaders)
           Padding(
             padding: padding,
             child: TitleInput(
               title: '',
-              titleErrorStream: this.presenter.titleErrorStream,
-              validateTitle: this.presenter.onChangeTitle,
+              titleErrorStream: presenter.titleErrorStream,
+              validateTitle: presenter.onChangeTitle,
             ),
           ),
         Padding(
@@ -53,7 +54,7 @@ class DiaryPage extends StatelessWidget {
             controller: controller,
           ),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(
             bottom: 24,
           ),

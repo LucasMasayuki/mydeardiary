@@ -22,19 +22,24 @@ class GetxAddDiaryPresenter extends GetxController
   final _dateError = Rx<UIError>(UIError.unexpected);
 
   String _title = '';
-  DateTime _date = new DateTime.now();
+  DateTime _date = DateTime.now();
 
+  @override
   Stream<UIError?> get titleErrorStream => _titleError.stream;
+  @override
   Stream<UIError?> get dateErrorStream => _dateError.stream;
 
+  @override
   void onChangeTitle(String title) {
     _title = title;
   }
 
+  @override
   void onChangeDate(DateTime date) {
     _date = date;
   }
 
+  @override
   Future<void> addDiary(String text) async {
     if (text == '' || _title == '') {
       mainError = UIError.requiredField;
@@ -42,7 +47,7 @@ class GetxAddDiaryPresenter extends GetxController
     }
 
     try {
-      final params = new AddDiaryParams(date: _date, title: _title, text: text);
+      final params = AddDiaryParams(date: _date, title: _title, text: text);
 
       await addDiaryCase.addDiary(params);
       mainError = UIError.nothing;

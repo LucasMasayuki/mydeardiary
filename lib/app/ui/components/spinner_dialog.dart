@@ -11,8 +11,8 @@ void showLoading(BuildContext context) {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              CircularProgressIndicator(),
-              SizedBox(height: 10),
+              const CircularProgressIndicator(),
+              const SizedBox(height: 10),
               Text(
                 R.string.wait,
                 textAlign: TextAlign.center,

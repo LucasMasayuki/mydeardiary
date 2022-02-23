@@ -8,6 +8,7 @@ class SettingEntity extends Equatable {
   double? fontSize;
   String? fontFamily;
 
+  @override
   List get props => [fontColor, pageColor, primaryColor, fontSize, fontFamily];
 
   SettingEntity({
@@ -19,18 +20,18 @@ class SettingEntity extends Equatable {
   });
 
   Map<String, dynamic> toJson() => {
-        'fontColor': this.fontColor,
-        'pageColor': this.pageColor,
-        'primaryColor': this.primaryColor,
-        'fontSize': this.fontSize,
-        'fontFamily': this.fontFamily,
+        'fontColor': fontColor,
+        'pageColor': pageColor,
+        'primaryColor': primaryColor,
+        'fontSize': fontSize,
+        'fontFamily': fontFamily,
       };
 
   SettingEntity.fromJson(Map<String, dynamic> json) {
-    this.fontColor = json['fontColor'];
-    this.pageColor = json['pageColor'];
-    this.primaryColor = json['primaryColor'];
-    this.fontSize = json['fontSize'];
-    this.fontFamily = json['fontFamily'];
+    fontColor = json['fontColor'];
+    pageColor = json['pageColor'];
+    primaryColor = json['primaryColor'];
+    fontSize = json['fontSize'];
+    fontFamily = json['fontFamily'];
   }
 }

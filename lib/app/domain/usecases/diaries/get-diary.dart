@@ -9,12 +9,13 @@ class GetDiaryParams extends Equatable {
   final int userId;
   final int diaryId;
 
+  @override
   List get props => [
         userId,
         diaryId,
       ];
 
-  GetDiaryParams({
+  const GetDiaryParams({
     required this.userId,
     required this.diaryId,
   });

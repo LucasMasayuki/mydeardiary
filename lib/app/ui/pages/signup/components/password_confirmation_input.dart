@@ -7,9 +7,10 @@ class PasswordConfirmationInput extends StatelessWidget {
   final void Function(String) validatePasswordConfirmation;
 
   const PasswordConfirmationInput({
+    Key? key,
     required this.passwordConfirmationErrorStream,
     required this.validatePasswordConfirmation,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

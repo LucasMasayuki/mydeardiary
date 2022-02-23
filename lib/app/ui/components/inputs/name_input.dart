@@ -7,9 +7,10 @@ class NameInput extends StatelessWidget {
   final void Function(String) validateName;
 
   const NameInput({
+    Key? key,
     required this.nameErrorStream,
     required this.validateName,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,17 +5,18 @@ abstract class AddDiary {
 }
 
 class AddDiaryParams extends Equatable {
-  late final String title;
-  late final DateTime date;
-  late final String text;
+  final String title;
+  final DateTime date;
+  final String text;
 
+  @override
   List get props => [
         title,
         date,
         text,
       ];
 
-  AddDiaryParams({
+  const AddDiaryParams({
     required this.title,
     required this.date,
     required this.text,

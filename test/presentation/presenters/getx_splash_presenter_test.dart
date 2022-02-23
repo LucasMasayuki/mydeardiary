@@ -56,7 +56,7 @@ void main() {
   });
 
   test('Should go to login page on null token', () async {
-    mockLoadCurrentAccount(account: UserEntity(token: null));
+    mockLoadCurrentAccount(account: const UserEntity(token: null));
 
     sut.navigateToStream.listen(
       expectAsync1(

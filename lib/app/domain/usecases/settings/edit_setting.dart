@@ -11,6 +11,7 @@ class EditSettingParams extends Equatable {
   final String? fontFamily;
   final String? primaryColor;
 
+  @override
   List get props => [
         pageColor,
         fontColor,
@@ -19,7 +20,7 @@ class EditSettingParams extends Equatable {
         primaryColor,
       ];
 
-  EditSettingParams({
+  const EditSettingParams({
     required this.fontSize,
     required this.pageColor,
     required this.fontColor,

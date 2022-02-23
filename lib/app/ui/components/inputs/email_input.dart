@@ -7,9 +7,10 @@ class EmailInput extends StatelessWidget {
   final void Function(String) validateEmail;
 
   const EmailInput({
+    Key? key,
     required this.emailErrorStream,
     required this.validateEmail,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

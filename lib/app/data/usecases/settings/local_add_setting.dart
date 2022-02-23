@@ -12,9 +12,10 @@ class LocalAddSetting implements AddSetting {
     required this.saveSharedPreferences,
   });
 
+  @override
   Future<SettingEntity> addSetting(AddSettingParams params) async {
     try {
-      final entity = new SettingEntity(
+      final entity = SettingEntity(
         fontColor: params.fontColor,
         fontFamily: params.fontFamily,
         fontSize: params.fontSize,
@@ -29,7 +30,6 @@ class LocalAddSetting implements AddSetting {
 
       return entity;
     } catch (error) {
-      print(error);
       throw DomainError.unexpected;
     }
   }

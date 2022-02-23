@@ -8,6 +8,8 @@ import 'ui/theme/app_theme.dart';
 
 // Main App Widget
 class MyDearDiaryApp extends StatelessWidget {
+  const MyDearDiaryApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
@@ -23,7 +25,7 @@ class MyDearDiaryApp extends StatelessWidget {
       initialRoute: '/',
       translations: AppTranslations(),
       locale: Get.deviceLocale,
-      fallbackLocale: Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
       getPages: routes,
     );
   }

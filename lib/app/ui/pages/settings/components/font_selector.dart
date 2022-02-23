@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class FontSelector extends StatelessWidget {
   final Function onClickFont;
 
-  FontSelector({
+  const FontSelector({
+    Key? key,
     required this.onClickFont,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,39 +20,39 @@ class FontSelector extends StatelessWidget {
               contentPadding: const EdgeInsets.all(0),
               children: [
                 ListTile(
-                  title: Text(
+                  title: const Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     style: TextStyle(fontFamily: 'indieflower'),
                   ),
-                  onTap: () => this.onClickFont('indieflower'),
+                  onTap: () => onClickFont('indieflower'),
                 ),
                 ListTile(
-                  title: Text(
+                  title: const Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     style: TextStyle(fontFamily: 'festive'),
                   ),
-                  onTap: () => this.onClickFont('festive'),
+                  onTap: () => onClickFont('festive'),
                 ),
                 ListTile(
-                  title: Text(
+                  title: const Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     style: TextStyle(fontFamily: 'birthstone'),
                   ),
-                  onTap: () => this.onClickFont('birthstone'),
+                  onTap: () => onClickFont('birthstone'),
                 ),
                 ListTile(
-                  title: Text(
+                  title: const Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                     style: TextStyle(fontFamily: 'ephesis'),
                   ),
-                  onTap: () => this.onClickFont('ephesis'),
+                  onTap: () => onClickFont('ephesis'),
                 ),
               ],
             );
           },
         );
       },
-      icon: Icon(Icons.font_download),
+      icon: const Icon(Icons.font_download),
     );
   }
 }

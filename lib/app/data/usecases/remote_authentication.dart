@@ -11,11 +11,12 @@ class RemoteAuthentication implements Authentication {
 
   RemoteAuthentication({required this.graphQlClient});
 
+  @override
   Future<UserEntity> auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
 
     try {
-      final responseData = await graphQlClient.query(LOGIN_QUERY, body);
+      final responseData = await graphQlClient.query(loginQuery, body);
       if (responseData == null) {
         throw DomainError.unexpected;
       }

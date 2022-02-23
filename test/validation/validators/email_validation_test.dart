@@ -6,7 +6,7 @@ void main() {
   EmailValidation? sut;
 
   setUp(() {
-    sut = EmailValidation('any_field');
+    sut = const EmailValidation('any_field');
   });
 
   test('Should return nothing if email is empty', () {

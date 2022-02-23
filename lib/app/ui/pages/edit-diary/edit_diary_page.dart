@@ -15,6 +15,8 @@ import '../../components/inputs/diary-input.dart';
 
 class EditDiaryPage extends StatelessWidget
     with LoadingManager, UIErrorManager, NavigationManager {
+  const EditDiaryPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     EditDiaryPresenter presenter = Get.find<EditDiaryPresenter>();
@@ -23,7 +25,7 @@ class EditDiaryPage extends StatelessWidget
     final index = Get.parameters['index'];
 
     final controller = TextEditingController();
-    final padding = EdgeInsets.only(
+    const padding = EdgeInsets.only(
       left: 28,
       right: 28,
       top: 4,
@@ -58,10 +60,8 @@ class EditDiaryPage extends StatelessWidget
                         setting: setting,
                         title: 'Carregando...',
                         withBackButton: true,
-                        body: Container(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                        body: const Center(
+                          child: CircularProgressIndicator(),
                         ),
                       );
                     }
@@ -76,7 +76,7 @@ class EditDiaryPage extends StatelessWidget
                             presenter.editDiary(
                                 controller.text, int.parse(index));
                           },
-                          icon: Icon(Icons.check),
+                          icon: const Icon(Icons.check),
                         ),
                       ],
                       title: 'Edit ${diary?.title}',
@@ -109,7 +109,7 @@ class EditDiaryPage extends StatelessWidget
                                 fontSize: 18,
                               ),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(
                                 bottom: 24,
                               ),

@@ -9,12 +9,13 @@ class PreviewDiary extends StatelessWidget {
   final double width;
   final SettingEntity? setting;
 
-  PreviewDiary({
+  const PreviewDiary({
+    Key? key,
     required this.text,
     required this.height,
     required this.width,
     required this.setting,
-  });
+  }) : super(key: key);
 
   Widget _buildLines() {
     var height = setting?.fontSize ?? 32 * _kHeight;
@@ -26,7 +27,7 @@ class PreviewDiary extends StatelessWidget {
       children: List.generate(
         numberOfLinesThatNeedToBeBuilt,
         (index) => Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
               bottom: BorderSide(
                 color: Colors.white,
@@ -34,7 +35,7 @@ class PreviewDiary extends StatelessWidget {
             ),
           ),
           height: height,
-          width: this.width,
+          width: width,
         ),
       ),
     );
@@ -49,21 +50,17 @@ class PreviewDiary extends StatelessWidget {
             // Add before TextField so it appears under it
             _buildLines(),
             ConstrainedBox(
-              constraints:
-                  BoxConstraints(minHeight: this.height, maxWidth: this.width),
-              child: Container(
-                // Listen for when the TextField's height changes
-                child: TextFormField(
-                  initialValue: text,
-                  maxLines: null,
-                  decoration: _inputDecoration(),
-                  keyboardType: TextInputType.multiline,
-                  style: TextStyle(
-                    color: colorFromHex(setting?.fontColor ?? ''),
-                    fontFamily: setting?.fontFamily,
-                    fontSize: setting?.fontSize,
-                    height: _kHeight,
-                  ),
+              constraints: BoxConstraints(minHeight: height, maxWidth: width),
+              child: TextFormField(
+                initialValue: text,
+                maxLines: null,
+                decoration: _inputDecoration(),
+                keyboardType: TextInputType.multiline,
+                style: TextStyle(
+                  color: colorFromHex(setting?.fontColor ?? ''),
+                  fontFamily: setting?.fontFamily,
+                  fontSize: setting?.fontSize,
+                  height: _kHeight,
                 ),
               ),
             ),
@@ -77,7 +74,7 @@ class PreviewDiary extends StatelessWidget {
   // unwanted dimensions.
 
   InputDecoration _inputDecoration() {
-    return InputDecoration(
+    return const InputDecoration(
       isDense: true,
       contentPadding: EdgeInsets.zero,
       border: InputBorder.none,

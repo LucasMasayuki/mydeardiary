@@ -11,6 +11,7 @@ class GetxSplashPresenter extends GetxController
 
   GetxSplashPresenter({required this.loadCurrentUser});
 
+  @override
   Future<void> checkAccount({int durationInSeconds = 10}) async {
     await Future.delayed(Duration(seconds: durationInSeconds));
     try {

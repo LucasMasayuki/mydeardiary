@@ -15,9 +15,10 @@ class LocalAddDiary implements AddDiary {
     required this.saveSharedPreferences,
   });
 
+  @override
   Future<void> addDiary(AddDiaryParams params) async {
     try {
-      final entity = new DiaryEntity(
+      final entity = DiaryEntity(
         text: params.text,
         title: params.title,
         date: params.date,
@@ -38,7 +39,6 @@ class LocalAddDiary implements AddDiary {
         value: json.encode(currentJson),
       );
     } catch (error) {
-      print(error);
       throw DomainError.unexpected;
     }
   }

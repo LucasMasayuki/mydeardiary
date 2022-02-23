@@ -53,7 +53,7 @@ void main() {
     };
 
     verify(
-      graphQLClient.mutate(SIGNUP_MUTATION, data),
+      graphQLClient.mutate(signupMutation, data),
     );
   });
 

@@ -1,4 +1,4 @@
-const LOGIN_QUERY = """
+const loginQuery = """
     query login(\$email: String!, \$password: String!) {
       login(
         email: \$email
@@ -10,7 +10,7 @@ const LOGIN_QUERY = """
     }
   """;
 
-const SIGNUP_MUTATION = """
+const signupMutation = """
     mutation signup(\$firstName: String!, \$lastName: String!, \$birthDate: DateTime!, \$email: String!, \$password: String!, \$passwordConfirmation: String!) {
       signup(
         firstName: \$firstName

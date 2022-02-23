@@ -6,7 +6,7 @@ void main() {
   CompareFieldsValidation? sut;
 
   setUp(() {
-    sut = CompareFieldsValidation(
+    sut = const CompareFieldsValidation(
       field: 'any_field',
       fieldToCompare: 'other_field',
     );

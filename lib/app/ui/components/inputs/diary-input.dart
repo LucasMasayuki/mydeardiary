@@ -1,17 +1,22 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:mydeardiary/app/domain/entities/setting_entity.dart';
+import 'package:mydeardiary/app/utils/color_helper.dart';
 
 class DiaryInput extends StatefulWidget {
   final String initialText;
   final TextEditingController controller;
   final double fontSize;
+  final SettingEntity? setting;
 
-  DiaryInput({
+  const DiaryInput({
+    Key? key,
     required this.controller,
     this.initialText = '',
     this.fontSize = 32.0,
-  });
+    this.setting,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -21,7 +26,7 @@ class DiaryInput extends StatefulWidget {
 
 class _DiaryInputState extends State<DiaryInput> {
   late GlobalKey _textFieldKey;
-  double _kHeight = 2.0;
+  final double _kHeight = 2.0;
   late double _kLineHeight;
   late double _kInitialHeight;
   late double lastKnownHeight;
@@ -36,7 +41,7 @@ class _DiaryInputState extends State<DiaryInput> {
     lastKnownHeight = _kInitialHeight;
 
     // Wait for all widgets to be drawn before trying to draw lines again
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _setLastKnownHeight());
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _setLastKnownHeight());
   }
 
   void _setLastKnownHeight() {
@@ -45,7 +50,7 @@ class _DiaryInputState extends State<DiaryInput> {
     final size = renderBoxTextField?.size;
 
     if (lastKnownHeight != size?.height) {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
         // Causes the widget to rebuild
         // (so the lines get redrawn)
         setState(() {
@@ -64,7 +69,7 @@ class _DiaryInputState extends State<DiaryInput> {
       children: List.generate(
         numberOfLinesThatNeedToBeBuilt,
         (index) => Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
               bottom: BorderSide(
                 color: Colors.white,
@@ -80,7 +85,7 @@ class _DiaryInputState extends State<DiaryInput> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
         children: [
           Stack(
@@ -91,28 +96,29 @@ class _DiaryInputState extends State<DiaryInput> {
                 constraints: BoxConstraints(
                   minHeight: _kInitialHeight,
                 ),
-                child: Container(
-                  child: NotificationListener<SizeChangedLayoutNotification>(
-                    onNotification:
-                        (SizeChangedLayoutNotification notification) {
-                      // Set the new TextField height whenever it changes
-                      _setLastKnownHeight();
-                      return true;
-                    },
-                    child: SizeChangedLayoutNotifier(
-                      // Listen for when the TextField's height changes
-                      child: TextField(
-                        key: _textFieldKey,
-                        controller: widget.controller,
-                        cursorHeight: _kLineHeight * 0.6,
-                        cursorWidth: 4,
-                        maxLines: null,
-                        decoration: _inputDecoration(),
-                        keyboardType: TextInputType.multiline,
-                        style: TextStyle(
-                          fontSize: widget.fontSize,
-                          height: _kHeight,
+                child: NotificationListener<SizeChangedLayoutNotification>(
+                  onNotification: (SizeChangedLayoutNotification notification) {
+                    // Set the new TextField height whenever it changes
+                    _setLastKnownHeight();
+                    return true;
+                  },
+                  child: SizeChangedLayoutNotifier(
+                    // Listen for when the TextField's height changes
+                    child: TextField(
+                      key: _textFieldKey,
+                      controller: widget.controller,
+                      cursorHeight: _kLineHeight * 0.6,
+                      cursorWidth: 4,
+                      maxLines: null,
+                      decoration: _inputDecoration(),
+                      keyboardType: TextInputType.multiline,
+                      style: TextStyle(
+                        color: createColorFromHex(
+                          widget.setting?.fontColor ?? '',
                         ),
+                        fontSize: widget.fontSize,
+                        fontFamily: widget.setting?.fontFamily,
+                        height: _kHeight,
                       ),
                     ),
                   ),
@@ -129,7 +135,7 @@ class _DiaryInputState extends State<DiaryInput> {
   // unwanted dimensions.
 
   InputDecoration _inputDecoration() {
-    return InputDecoration(
+    return const InputDecoration(
       isDense: true,
       contentPadding: EdgeInsets.zero,
       border: InputBorder.none,

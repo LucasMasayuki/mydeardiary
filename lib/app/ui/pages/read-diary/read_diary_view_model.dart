@@ -5,9 +5,10 @@ class ReadDiaryViewModel extends Equatable {
   final DateTime date;
   final List<String> pages;
 
+  @override
   List get props => [title, date, pages];
 
-  ReadDiaryViewModel({
+  const ReadDiaryViewModel({
     required this.title,
     required this.date,
     required this.pages,

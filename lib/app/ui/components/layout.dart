@@ -11,14 +11,15 @@ class Layout extends StatelessWidget {
   final SettingEntity? setting;
   final List<Widget>? actions;
 
-  Layout({
+  const Layout({
+    Key? key,
     required this.body,
     required this.setting,
     this.floatingActionButton,
     this.withBackButton = false,
     this.title = 'My dear diary',
     this.actions,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,8 @@ class Layout extends StatelessWidget {
       backgroundColor: colorFromHex(setting?.pageColor ?? ''),
       appBar: AppBar(
         backgroundColor: colorFromHex(setting?.primaryColor ?? ''),
-        actions: this.actions,
+        actions: actions,
+        iconTheme: IconThemeData(color: colorFromHex(setting?.fontColor ?? '')),
         leading: withBackButton
             ? IconButton(
                 onPressed: () {
@@ -45,6 +47,7 @@ class Layout extends StatelessWidget {
             style: TextStyle(
               color: colorFromHex(setting?.fontColor ?? ''),
               fontFamily: setting?.fontFamily,
+              fontWeight: FontWeight.bold,
             ),
           ),
           onTap: () {
@@ -59,20 +62,25 @@ class Layout extends StatelessWidget {
                 // Important: Remove any padding from the ListView.
                 padding: EdgeInsets.zero,
                 children: [
-                  const DrawerHeader(
+                  DrawerHeader(
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: colorFromHex(setting?.primaryColor ?? ''),
                     ),
                     child: Text(
                       'My dear diary',
+                      style: TextStyle(
+                        color: colorFromHex(setting?.fontColor ?? ''),
+                        fontFamily: setting?.fontFamily,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   ListTile(
                     title: Text(
                       'Settings'.tr,
                       style: TextStyle(
-                        color: colorFromHex(setting?.fontColor ?? ''),
                         fontFamily: setting?.fontFamily,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     onTap: () {
@@ -83,8 +91,8 @@ class Layout extends StatelessWidget {
                     title: Text(
                       'login'.tr,
                       style: TextStyle(
-                        color: colorFromHex(setting?.fontColor ?? ''),
                         fontFamily: setting?.fontFamily,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     onTap: () {

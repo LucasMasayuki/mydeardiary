@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class LoginHeader extends StatelessWidget {
+  const LoginHeader({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 240,
-      margin: EdgeInsets.only(bottom: 32),
+      margin: const EdgeInsets.only(bottom: 32),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,
@@ -15,7 +17,7 @@ class LoginHeader extends StatelessWidget {
             Theme.of(context).primaryColorDark
           ],
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             offset: Offset(0, 0),
             spreadRadius: 0,
@@ -23,7 +25,7 @@ class LoginHeader extends StatelessWidget {
             color: Colors.black,
           )
         ],
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(80),
         ),
       ),

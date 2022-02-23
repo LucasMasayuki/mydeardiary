@@ -9,6 +9,7 @@ class DiaryEntity extends Equatable {
   DateTime? created;
   DateTime? modified;
 
+  @override
   List get props => [text];
 
   DiaryEntity({
@@ -21,14 +22,14 @@ class DiaryEntity extends Equatable {
   });
 
   Map<String, dynamic> toJson() => {
-        'text': this.text,
-        'title': this.title,
-        'date': this.date.toString(),
+        'text': text,
+        'title': title,
+        'date': date.toString(),
       };
 
   DiaryEntity.fromJson(Map<String, dynamic> json) {
-    this.text = json['text'];
-    this.title = json['title'];
-    this.date = DateTime.parse(json['date']);
+    text = json['text'];
+    title = json['title'];
+    date = DateTime.parse(json['date']);
   }
 }

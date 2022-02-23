@@ -8,11 +8,12 @@ abstract class GetDiaries {
 class GetDiariesParams extends Equatable {
   final int? userId;
 
+  @override
   List get props => [
         userId,
       ];
 
-  GetDiariesParams({
+  const GetDiariesParams({
     required this.userId,
   });
 }

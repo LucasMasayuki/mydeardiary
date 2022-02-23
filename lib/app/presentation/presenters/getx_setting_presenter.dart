@@ -27,16 +27,18 @@ class GetxSettingPresenter extends GetxController
     required this.loadCurrentUserCase,
   });
 
-  final Rx<SettingEntity?> _setting = (new SettingEntity(
-    fontColor: DEFAULT_FONT_COLOR,
-    fontFamily: DEFAULT_FONT_FAMILY,
-    fontSize: DEFAULT_FONT_SIZE,
-    pageColor: DEFAULT_PAGE_COLOR,
-    primaryColor: DEFAULT_PRIMARY_COLOR,
+  final Rx<SettingEntity?> _setting = (SettingEntity(
+    fontColor: defaultFontColor,
+    fontFamily: defaultFontFamily,
+    fontSize: defaultFontSize,
+    pageColor: defaultPageColor,
+    primaryColor: defaultPrimaryColor,
   )).obs;
 
+  @override
   Stream<SettingEntity?> get settingStream => _setting.stream;
 
+  @override
   Future<void> editSetting(EditSettingParams params) async {
     try {
       await editSettingCase.editSetting(params);
@@ -53,22 +55,23 @@ class GetxSettingPresenter extends GetxController
     }
   }
 
+  @override
   Future<void> getSetting() async {
     mainError = UIError.nothing;
 
     try {
       final user = await loadCurrentUserCase.load();
 
-      final params = new GetSettingParams(userId: user.id ?? 0);
+      final params = GetSettingParams(userId: user.id ?? 0);
       var setting = await getSettingCase.getSetting(params);
 
       if (setting == null) {
-        final params = new AddSettingParams(
-          fontColor: DEFAULT_FONT_COLOR,
-          fontFamily: DEFAULT_FONT_FAMILY,
-          fontSize: DEFAULT_FONT_SIZE,
-          pageColor: DEFAULT_PAGE_COLOR,
-          primaryColor: DEFAULT_PRIMARY_COLOR,
+        const params = AddSettingParams(
+          fontColor: defaultFontColor,
+          fontFamily: defaultFontFamily,
+          fontSize: defaultFontSize,
+          pageColor: defaultPageColor,
+          primaryColor: defaultPrimaryColor,
         );
 
         setting = await addSettingCase.addSetting(params);

@@ -46,7 +46,7 @@ void main() {
       'password': params.password,
     };
 
-    verify(graphQlClient.query(LOGIN_QUERY, data));
+    verify(graphQlClient.query(loginQuery, data));
   });
 
   test('Should throw UnexpectedError if dioClient returns 400', () async {

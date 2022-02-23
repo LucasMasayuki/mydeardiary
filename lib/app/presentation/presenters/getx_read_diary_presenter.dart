@@ -15,7 +15,7 @@ class GetxReadDiaryPresenter extends GetxController
     implements ReadDiaryPresenter {
   final GetDiary getDiaryCase;
   final LoadCurrentUser loadCurrentUserCase;
-  RxInt _totalPages = 1.obs;
+  final RxInt _totalPages = 1.obs;
 
   GetxReadDiaryPresenter({
     required this.getDiaryCase,
@@ -24,16 +24,19 @@ class GetxReadDiaryPresenter extends GetxController
 
   final _diary = Rx<ReadDiaryViewModel?>(null);
 
+  @override
   Stream<ReadDiaryViewModel?> get diaryStream => _diary.stream;
+  @override
   int get totalPages => _totalPages.value;
 
+  @override
   Future<void> getDiary(int index) async {
     mainError = UIError.nothing;
 
     try {
       final user = await loadCurrentUserCase.load();
 
-      final params = new GetDiaryParams(userId: user.id ?? 0, diaryId: index);
+      final params = GetDiaryParams(userId: user.id ?? 0, diaryId: index);
       final diary = await getDiaryCase.getDiary(params);
 
       final lines = diary?.text.split('\n');
@@ -58,13 +61,13 @@ class GetxReadDiaryPresenter extends GetxController
         i++;
       });
 
-      if (page.length > 0) {
+      if (page.isNotEmpty) {
         pages.add(page);
       }
 
       _totalPages.value = pages.length;
 
-      _diary.value = new ReadDiaryViewModel(
+      _diary.value = ReadDiaryViewModel(
         date: diary!.date,
         title: diary.title ?? '',
         pages: pages,
@@ -81,6 +84,7 @@ class GetxReadDiaryPresenter extends GetxController
     }
   }
 
+  @override
   void goToEditDiary(int index) {
     navigateTo = '/edit-diary/$index';
   }

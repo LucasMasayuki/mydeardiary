@@ -36,6 +36,7 @@ void main() {
           data: data,
           exception: exception,
           source: null,
+          parserFn: (Map<String, dynamic> data) {},
         ),
       );
 
@@ -44,6 +45,7 @@ void main() {
           data: data,
           exception: exception,
           source: null,
+          parserFn: (Map<String, dynamic> data) {},
         ),
       );
     }
@@ -60,13 +62,13 @@ void main() {
       final exception = OperationException(
         linkException: HttpLinkServerException(
           response: http.Response('', HttpStatus.notFound),
-          parsedResponse: Response(),
+          parsedResponse: const Response(),
         ),
       );
 
       mockExceptionResponse(exception);
 
-      final future = sut.query(LOGIN_QUERY, {});
+      final future = sut.query(loginQuery, {});
 
       expect(future, throwsA(HttpError.notFound));
     });
@@ -75,13 +77,13 @@ void main() {
       final exception = OperationException(
         linkException: HttpLinkServerException(
           response: http.Response('', HttpStatus.noContent),
-          parsedResponse: Response(),
+          parsedResponse: const Response(),
         ),
       );
 
       mockExceptionResponse(exception);
 
-      final future = await sut.query(LOGIN_QUERY, {});
+      final future = await sut.query(loginQuery, {});
 
       expect(future, null);
     });
@@ -91,13 +93,13 @@ void main() {
       final exception = OperationException(
         linkException: HttpLinkServerException(
           response: http.Response('', HttpStatus.badRequest),
-          parsedResponse: Response(),
+          parsedResponse: const Response(),
         ),
       );
 
       mockExceptionResponse(exception);
 
-      final future = sut.query(LOGIN_QUERY, {});
+      final future = sut.query(loginQuery, {});
       expect(future, throwsA(HttpError.badRequest));
     });
 
@@ -106,13 +108,13 @@ void main() {
       final exception = OperationException(
         linkException: HttpLinkServerException(
           response: http.Response('', HttpStatus.unauthorized),
-          parsedResponse: Response(),
+          parsedResponse: const Response(),
         ),
       );
 
       mockExceptionResponse(exception);
 
-      final future = sut.query(LOGIN_QUERY, {});
+      final future = sut.query(loginQuery, {});
 
       expect(future, throwsA(HttpError.unauthorized));
     });
@@ -121,13 +123,13 @@ void main() {
       final exception = OperationException(
         linkException: HttpLinkServerException(
           response: http.Response('', HttpStatus.forbidden),
-          parsedResponse: Response(),
+          parsedResponse: const Response(),
         ),
       );
 
       mockExceptionResponse(exception);
 
-      final future = sut.query(LOGIN_QUERY, {});
+      final future = sut.query(loginQuery, {});
 
       expect(future, throwsA(HttpError.forbidden));
     });
@@ -138,7 +140,7 @@ void main() {
 
       mockSuccessResponse(data);
 
-      final future = await sut.query(LOGIN_QUERY, {});
+      final future = await sut.query(loginQuery, {});
 
       expect(future, data);
     });
@@ -149,7 +151,7 @@ void main() {
 
       mockSuccessResponse(data);
 
-      final future = await sut.mutate(SIGNUP_MUTATION, {});
+      final future = await sut.mutate(signupMutation, {});
 
       expect(future, data);
     });

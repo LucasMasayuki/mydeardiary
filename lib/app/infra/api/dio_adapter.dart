@@ -10,6 +10,7 @@ class DioAdapter implements DioClient {
 
   DioAdapter(this.client);
 
+  @override
   Future<T> get<T>(
     String url, {
     Map<String, dynamic>? queryParameters,
@@ -17,17 +18,18 @@ class DioAdapter implements DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final response = await this.client.get(
-          url,
-          queryParameters: queryParameters,
-          options: options,
-          cancelToken: cancelToken,
-          onReceiveProgress: onReceiveProgress,
-        );
+    final response = await client.get(
+      url,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onReceiveProgress: onReceiveProgress,
+    );
 
     return handleResponse(response);
   }
 
+  @override
   Future<T> post<T>(
     String url, {
     required Map<String, dynamic> data,
@@ -37,19 +39,20 @@ class DioAdapter implements DioClient {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final response = await this.client.post(
-          url,
-          data: FormData.fromMap(data),
-          queryParameters: queryParameters,
-          options: options,
-          cancelToken: cancelToken,
-          onSendProgress: onSendProgress,
-          onReceiveProgress: onReceiveProgress,
-        );
+    final response = await client.post(
+      url,
+      data: FormData.fromMap(data),
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
 
     return handleResponse(response);
   }
 
+  @override
   dynamic handleResponse(Response response) {
     switch (response.statusCode) {
       case HttpStatus.ok:

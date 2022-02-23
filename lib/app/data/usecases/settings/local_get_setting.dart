@@ -12,6 +12,7 @@ class LocalGetSettings implements GetSetting {
     required this.fetchSharedPreferences,
   });
 
+  @override
   Future<SettingEntity?> getSetting(GetSettingParams params) async {
     try {
       final setting = await fetchSharedPreferences.fetch('settings');
@@ -21,7 +22,6 @@ class LocalGetSettings implements GetSetting {
 
       return SettingEntity.fromJson(json.decode(setting));
     } catch (error) {
-      print(error);
       throw DomainError.unexpected;
     }
   }

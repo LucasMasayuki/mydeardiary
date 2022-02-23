@@ -10,6 +10,7 @@ class GraphQlAdapter implements GraphQl {
 
   GraphQlAdapter(this.client);
 
+  @override
   Future<T> query<T>(String query, Map<String, dynamic> variables) async {
     final options = QueryOptions(
       document: gql(query),
@@ -20,6 +21,7 @@ class GraphQlAdapter implements GraphQl {
     return handleResponse(queryResult);
   }
 
+  @override
   Future<T> mutate<T>(String query, Map<String, dynamic> variables) async {
     final options = MutationOptions(
       document: gql(query),
@@ -30,6 +32,7 @@ class GraphQlAdapter implements GraphQl {
     return handleResponse(queryResult);
   }
 
+  @override
   dynamic handleResponse(QueryResult response) {
     if (!response.hasException) {
       return response.data;

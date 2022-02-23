@@ -14,13 +14,15 @@ import '../../components/inputs/diary-input.dart';
 
 class AddDiaryPage extends StatelessWidget
     with LoadingManager, UIErrorManager, NavigationManager {
+  const AddDiaryPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     AddDiaryPresenter presenter = Get.find<AddDiaryPresenter>();
     SettingPresenter settingPresenter = Get.find<SettingPresenter>();
 
     final controller = TextEditingController();
-    final padding = EdgeInsets.only(
+    const padding = EdgeInsets.only(
       left: 28,
       right: 28,
       top: 4,
@@ -47,7 +49,7 @@ class AddDiaryPage extends StatelessWidget
                   onPressed: () {
                     presenter.addDiary(controller.text);
                   },
-                  icon: Icon(Icons.check),
+                  icon: const Icon(Icons.check),
                 ),
               ],
               title: 'Write',
@@ -66,6 +68,7 @@ class AddDiaryPage extends StatelessWidget
                           initialValue: DateTime.now(),
                           dateErrorStream: presenter.dateErrorStream,
                           onChangeDate: presenter.onChangeDate,
+                          setting: setting,
                         ),
                       ),
                       Padding(
@@ -74,6 +77,7 @@ class AddDiaryPage extends StatelessWidget
                           title: '',
                           titleErrorStream: presenter.titleErrorStream,
                           validateTitle: presenter.onChangeTitle,
+                          setting: setting,
                         ),
                       ),
                       Padding(
@@ -81,10 +85,11 @@ class AddDiaryPage extends StatelessWidget
                         child: DiaryInput(
                           initialText: '',
                           controller: controller,
-                          fontSize: 18,
+                          fontSize: setting?.fontSize ?? 12,
+                          setting: setting,
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(
                           bottom: 24,
                         ),

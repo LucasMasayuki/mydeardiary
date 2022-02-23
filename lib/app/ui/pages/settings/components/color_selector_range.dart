@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 class ColorSelectorRange extends StatelessWidget {
   final Function onClickColor;
 
-  ColorSelectorRange({
+  const ColorSelectorRange({
+    Key? key,
     required this.onClickColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final width = (MediaQuery.of(context).size.width - 55 - (2 * 10)) / 10;
-    final height = 30.0;
+    const height = 30.0;
     return Row(
       children: [
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.white);
+            onClickColor(Colors.white);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -28,7 +29,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.red);
+            onClickColor(Colors.red);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -41,7 +42,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.pink);
+            onClickColor(Colors.pink);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -54,7 +55,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.purple);
+            onClickColor(Colors.purple);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -67,7 +68,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.blue);
+            onClickColor(Colors.blue);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -80,7 +81,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.green);
+            onClickColor(Colors.green);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -93,7 +94,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.yellow);
+            onClickColor(Colors.yellow);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -106,7 +107,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.orange);
+            onClickColor(Colors.orange);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -119,7 +120,7 @@ class ColorSelectorRange extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            this.onClickColor(Colors.black);
+            onClickColor(Colors.black);
           },
           child: Container(
             decoration: BoxDecoration(
