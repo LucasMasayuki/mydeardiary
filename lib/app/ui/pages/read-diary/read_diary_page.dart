@@ -106,7 +106,7 @@ class _ReadDiaryPageState extends State<ReadDiaryPage>
                     }).toList();
 
                     var lines = 30;
-                    var height = 48;
+                    var height = (setting?.fontSize ?? 12) * 2.5;
 
                     return Layout(
                       setting: setting,

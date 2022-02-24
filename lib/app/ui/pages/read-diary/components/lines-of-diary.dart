@@ -50,21 +50,16 @@ class LinesOfDiary extends StatelessWidget {
           children: [
             // Add before TextField so it appears under it
             _buildLines(initialHeight),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: initialHeight,
-              ),
-              child: TextFormField(
-                initialValue: text,
-                maxLines: null,
-                decoration: _inputDecoration(),
-                keyboardType: TextInputType.multiline,
-                style: TextStyle(
-                  color: createColorFromHex(fontColor),
-                  fontFamily: fontFamily,
-                  fontSize: fontSize,
-                  height: _kHeight,
-                ),
+            TextFormField(
+              initialValue: text,
+              maxLines: null,
+              decoration: _inputDecoration(),
+              keyboardType: TextInputType.multiline,
+              style: TextStyle(
+                color: createColorFromHex(fontColor),
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                height: _kHeight,
               ),
             ),
           ],

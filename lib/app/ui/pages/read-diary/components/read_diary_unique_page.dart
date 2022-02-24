@@ -29,8 +29,6 @@ class ReadDiaryUniquePage extends StatelessWidget {
       bottom: 4,
     );
 
-    print(setting);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
