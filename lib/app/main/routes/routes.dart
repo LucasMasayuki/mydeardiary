@@ -1,12 +1,14 @@
 import 'package:mydeardiary/app/main/bindings/add_diary_bindings.dart';
 import 'package:mydeardiary/app/main/bindings/edit_diary_bindings.dart';
 import 'package:mydeardiary/app/main/bindings/home_bindings.dart';
+import 'package:mydeardiary/app/main/bindings/lock_bindings.dart';
 import 'package:mydeardiary/app/main/bindings/read_diary_bindings.dart';
 import 'package:mydeardiary/app/main/bindings/settings_bindings.dart';
 import 'package:mydeardiary/app/main/bindings/splash_page_bindings.dart';
 import 'package:mydeardiary/app/main/factories/pages/add-diary/add_diary_page_factory.dart';
 import 'package:mydeardiary/app/main/factories/pages/edit-diary/edit_diary_page_factory.dart';
 import 'package:mydeardiary/app/main/factories/pages/home/home_page_factory.dart';
+import 'package:mydeardiary/app/main/factories/pages/lock/lock_page_factory.dart';
 import 'package:mydeardiary/app/main/factories/pages/login/login_page_factory.dart';
 import 'package:mydeardiary/app/main/factories/pages/read-diary/read_diary_page_factory.dart';
 import 'package:mydeardiary/app/main/factories/pages/setting/setting_page_factory.dart';
@@ -59,5 +61,11 @@ final routes = [
     page: makeSettingPage,
     transition: Transition.rightToLeft,
     binding: SettingBindings(),
+  ),
+  GetPage(
+    name: '/lock',
+    page: makeLockPage,
+    transition: Transition.rightToLeft,
+    binding: LockBindings(),
   ),
 ];

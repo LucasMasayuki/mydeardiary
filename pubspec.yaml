@@ -24,6 +24,10 @@ dependencies:
   cupertino_icons: 1.0.3
   mask_text_input_formatter: 2.0.0
   flutter_lints: ^1.0.0
+  # cloud_firestore: ^0.12.9+5
+  # firebase_auth: ^0.14.0+5
+  # firebase_core: ^0.4.0+9
+  local_auth: 1.1.11
   page_turn:
     git:
       url: https://github.com/LucasMasayuki/page_turn

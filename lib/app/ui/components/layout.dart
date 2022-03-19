@@ -76,6 +76,20 @@ class Layout extends StatelessWidget {
                     ),
                   ),
                   ListTile(
+                    leading: const Icon(Icons.lock_outline),
+                    title: Text(
+                      'Lock'.tr,
+                      style: TextStyle(
+                        fontFamily: setting?.fontFamily,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.offNamed('/lock');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.settings),
                     title: Text(
                       'Settings'.tr,
                       style: TextStyle(

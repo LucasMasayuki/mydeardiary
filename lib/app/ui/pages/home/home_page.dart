@@ -51,7 +51,8 @@ class HomePage extends StatelessWidget
                   return StreamBuilder<List<DiaryEntity>?>(
                     stream: presenter.diariesStream,
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
+                      if (snapshot.connectionState == ConnectionState.waiting &&
+                          snapshot.data == null) {
                         return const ShimmerLoadingList();
                       }
 
